@@ -67,9 +67,18 @@ public boolean onTouchEvent(MotionEvent event) {
 
 public void update() {
         if ((System.nanoTime() - startTime)%0.75 == 0) {
+            Random r = new Random();
+            int nextStar = r.nextInt(screenX);
+            handler.addObject(new BGStar(nextStar, 0, 5));
+
+        }
+        if (seconds % 15 == 0){
+            if (alreadyDone == false) {
                 Random r = new Random();
-                int next = r.nextInt(screenX);
-                handler.addObject(new BGStar(next, 0, 15));
+                int nextObject = r.nextInt(screenX);
+                handler.addObject(new Asteroid(nextObject, 0, 10, BitmapFactory.decodeResource(getResources(), R.drawable.asteroid_m)));
+                alreadyDone = true;
+            }
         }
     handler.updateObjects(this);
 }
