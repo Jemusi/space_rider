@@ -21,9 +21,9 @@ public class Asteroid extends GameObject {
     }
 
     public void update() {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(1);
-        this.image = Bitmap.createBitmap(this.image,0,0, this.image.getWidth(), this.image.getHeight(), matrix, true);
+        //Matrix matrix = new Matrix();
+        //matrix.postRotate(1);
+        //this.image = Bitmap.createBitmap(this.image,0,0, this.image.getWidth(), this.image.getHeight(), matrix, true);
         y += speed;
     }
 

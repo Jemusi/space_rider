@@ -1,6 +1,7 @@
 package com.boysintheback.space_rider;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -93,9 +94,10 @@ public void update() {
                 int bigAsteroid = b.nextInt(6);
                 if (bigAsteroid > 2 && bigAsteroid < 5){
                     handler.addObject(new Asteroid(nextObject, 0, 20, BitmapFactory.decodeResource(getResources(),R.drawable.asteroid_l)));
-                }
+                } else
                 if (bigAsteroid == 5){
-                    handler.addObject(new Asteroid(nextObject, 0, 20, BitmapFactory.decodeResource(getResources(),R.drawable.asteroid_g)));
+                    Bitmap bmp = BitmapFactory.decodeResource(getResources(),R.drawable.asteroid_g);
+                    handler.addObject(new Asteroid(nextObject, 0, 20, Bitmap.createScaledBitmap(bmp, 400, 400, false)));
                 }
                 else handler.addObject(new Asteroid(nextObject, 0, 20, BitmapFactory.decodeResource(getResources(),R.drawable.asteroid_m)));
                 alreadyDone = true;
