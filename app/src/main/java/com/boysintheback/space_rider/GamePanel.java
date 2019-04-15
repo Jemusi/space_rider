@@ -67,21 +67,21 @@ public boolean onTouchEvent(MotionEvent event) {
 }
 
 public void update() {
-        if ((System.nanoTime() - startTime)%0.75 == 0) {
+        if ((System.nanoTime() - startTime)%2.50 == 0) {
             Random r = new Random();
             int nextStar = r.nextInt(screenX);
-            handler.addObject(new BGStar(nextStar, 0, 5));
+            handler.addObject(new BGStar(nextStar, 0, 10));
 
         }
         if (seconds % 10 == 0){
             if (alreadyDone == false) {
                 Random r = new Random();
                 int nextObject = r.nextInt(screenX);
-                handler.addObject(new Asteroid(nextObject, 0, 10, BitmapFactory.decodeResource(getResources(), R.drawable.asteroid_m)));
+                handler.addObject(new Asteroid(nextObject, 0, 18, BitmapFactory.decodeResource(getResources(), R.drawable.asteroid_m)));
                 alreadyDone = true;
             }
         }
-    handler.updateObjects();
+    handler.updateObjects(this);
 }
 
 public void draw(Canvas canvas) {
@@ -91,7 +91,5 @@ public void draw(Canvas canvas) {
             spaceship.draw(canvas);
             handler.renderObjects(canvas);
         }
-
-
 }
 }

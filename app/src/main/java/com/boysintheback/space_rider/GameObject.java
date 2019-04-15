@@ -16,4 +16,8 @@ public abstract class GameObject {
     public abstract void render(Canvas c);
 
     public abstract void update();
+
+    public abstract int getX();
+
+    public abstract int getY();
 }
