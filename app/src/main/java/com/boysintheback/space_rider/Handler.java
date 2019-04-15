@@ -25,10 +25,19 @@ public class Handler {
 
     public void updateObjects(GamePanel g) {
         for (int i = 0; i < objects.size(); i++) {
-            if (objects.get(i).getX() > g.size.y) {
+            if (objects.get(i).getY() > g.size.y) {
                 objects.remove(objects.get(i));
             }
             objects.get(i).update();
+        }
+    }
+
+    public void updateCurrentStars(int speed) {
+        for (int i = 0; i < objects.size(); i++) {
+            if (objects.get(i).getType() == "Star") {
+                BGStar temp = (BGStar)objects.get(i);
+                temp.incSpeed(speed);
+            }
         }
     }
 }
