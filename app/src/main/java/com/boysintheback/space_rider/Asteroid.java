@@ -18,7 +18,7 @@ public class Asteroid extends GameObject {
     }
 
     public void render(Canvas c) {
-        angle+=10;
+        angle+=5;
         if (angle > 360) {
             angle = 0;
         }

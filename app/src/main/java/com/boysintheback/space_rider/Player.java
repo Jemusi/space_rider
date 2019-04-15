@@ -31,8 +31,8 @@ public class Player {
 
     public void update(boolean left) {
         if (left){
-            this.x -= 10;
-        } else this.x += 10;
+            this.x -= 30;
+        } else this.x += 30;
     }
 
     public void render(Canvas c) {

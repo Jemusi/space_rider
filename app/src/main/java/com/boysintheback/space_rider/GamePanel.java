@@ -23,7 +23,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public boolean alreadyDone = false;
     public boolean alreadyDoneInitial = false;
     public boolean alreadyDroppedFuel = false;
-
+    private boolean holding;
     private MainThread thread;
 
     private Player spaceship;
@@ -31,6 +31,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public Handler handler;
 
     private Paint paint;
+    private boolean right;
 
 
     public GamePanel(Context context) {
@@ -71,10 +72,23 @@ public void surfaceDestroyed(SurfaceHolder holder) {
 
 @Override
 public boolean onTouchEvent(MotionEvent event) {
-        return super.onTouchEvent(event);
+        if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE){
+            holding = true;
+            if (event.getX() > size.x/2){
+                right = true;
+            }
+            else right = false;
+        }
+        else if (event.getAction() == MotionEvent.ACTION_UP){
+            holding = false;
+        }
+        return true;
 }
 
 public void update() {
+        if (holding){
+            spaceship.update(!right);
+        }
         if (seconds == 0) {
             if (!alreadyDoneInitial) {
                 for (int i = 0; i < 50; ++i) {
@@ -90,7 +104,6 @@ public void update() {
             Random r = new Random();
             int nextStar = r.nextInt(size.x);
             handler.addObject(new BGStar(nextStar, 0, 5));
-
         }
         if (seconds % 3 == 0){
             if (!alreadyDroppedFuel) {
