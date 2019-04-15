@@ -66,7 +66,7 @@ public boolean onTouchEvent(MotionEvent event) {
 }
 
 public void update() {
-        if ((System.nanoTime() - startTime)%0.75 == 0) {
+        if ((System.nanoTime() - startTime)%2.50 == 0) {
             Random r = new Random();
             int nextStar = r.nextInt(size.x);
             handler.addObject(new BGStar(nextStar, 0, 5));
