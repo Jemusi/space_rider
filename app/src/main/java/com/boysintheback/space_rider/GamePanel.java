@@ -13,17 +13,14 @@ import android.view.SurfaceView;
 import java.util.Random;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
-    public int screenX = 1050;
-    public int screenY = 2500;
+    public Point size;
     public int seconds = 0;
     long startTime;
     public boolean alreadyDone = false;
 
-    private Player spaceship = new Player(BitmapFactory.decodeResource(getResources(),R.drawable.spaceship), screenX/2, 1500);
-
-    public Handler handler = new Handler(spaceship);
-
     private MainThread thread;
+
+    private Player spaceship;
 
     public Handler handler = new Handler(spaceship);
 
@@ -48,7 +45,7 @@ public void surfaceCreated(SurfaceHolder holder) {
         thread = new MainThread(getHolder(), this);
         thread.setRunning(true);
         thread.start();
-//        spaceship = new Player(BitmapFactory.decodeResource(getResources(),R.drawable.spaceship), screenX/2, 1500);
+        spaceship = new Player(BitmapFactory.decodeResource(getResources(),R.drawable.spaceship), size.x/2, size.y/2);
 }
 
 @Override
@@ -71,19 +68,19 @@ public boolean onTouchEvent(MotionEvent event) {
 public void update() {
         if ((System.nanoTime() - startTime)%2.50 == 0) {
             Random r = new Random();
-            int nextStar = r.nextInt(screenX);
-            handler.addObject(new BGStar(nextStar, 0, 10));
+            int nextStar = r.nextInt(size.x);
+            handler.addObject(new BGStar(nextStar, 0, 5));
 
         }
-        if (seconds % 10 == 0){
+        if (seconds % 15 == 0){
             if (alreadyDone == false) {
                 Random r = new Random();
-                int nextObject = r.nextInt(screenX);
-                handler.addObject(new Asteroid(nextObject, 0, 18, BitmapFactory.decodeResource(getResources(), R.drawable.asteroid_m)));
+                int nextObject = r.nextInt(size.x);
+                handler.addObject(new Asteroid(nextObject, 0, 10, BitmapFactory.decodeResource(getResources(), R.drawable.asteroid_m)));
                 alreadyDone = true;
             }
         }
-    handler.updateObjects(this);
+        handler.updateObjects(this);
 }
 
 public void draw(Canvas canvas) {
@@ -93,5 +90,7 @@ public void draw(Canvas canvas) {
             spaceship.draw(canvas);
             handler.renderObjects(canvas);
         }
+
+
 }
 }
