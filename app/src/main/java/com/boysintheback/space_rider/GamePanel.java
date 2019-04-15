@@ -17,11 +17,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public int seconds = 0;
     long startTime;
     public boolean alreadyDone = false;
-    public Handler handler = new Handler();
 
     private MainThread thread;
 
     private Player spaceship;
+
+    public Handler handler = new Handler(spaceship);
 
 
     public GamePanel(Context context) {
