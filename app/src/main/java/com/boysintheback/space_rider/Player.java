@@ -12,7 +12,8 @@ public class Player {
 
 
     public Player(Bitmap bmp, int x, int y) {
-        image = bmp;
+        Bitmap resizedBMP = Bitmap.createScaledBitmap(bmp, 128, 128, false);
+        image = resizedBMP;
         this.x = x;
         this.y = y;
     }
