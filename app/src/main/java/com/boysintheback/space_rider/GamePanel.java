@@ -81,7 +81,5 @@ public void draw(Canvas canvas) {
             spaceship.draw(canvas);
             handler.renderObjects(canvas);
         }
-
-
 }
 }
