@@ -17,6 +17,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public int seconds = 0;
     long startTime;
     public boolean alreadyDone = false;
+    public boolean alreadyDoneInitial = false;
 
     private MainThread thread;
 
@@ -65,7 +66,18 @@ public boolean onTouchEvent(MotionEvent event) {
 }
 
 public void update() {
-        if ((System.nanoTime() - startTime)%2.50 == 0) {
+        if (seconds == 0) {
+            if (!alreadyDoneInitial) {
+                for (int i = 0; i < 50; ++i) {
+                    Random r = new Random();
+                    int nextPosX = r.nextInt(size.x);
+                    int nextPosY = r.nextInt(size.y);
+                    handler.addObject(new BGStar(nextPosX, nextPosY, 5));
+                    alreadyDoneInitial = true;
+                }
+            }
+        }
+        if ((System.nanoTime() - startTime)%7.50 == 0) {
             Random r = new Random();
             int nextStar = r.nextInt(size.x);
             handler.addObject(new BGStar(nextStar, 0, 5));
