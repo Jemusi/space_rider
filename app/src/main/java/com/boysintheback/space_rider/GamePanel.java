@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Point;
+import android.graphics.Point; 
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
