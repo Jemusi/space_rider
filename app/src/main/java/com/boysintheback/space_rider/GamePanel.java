@@ -83,11 +83,13 @@ public void update() {
             handler.addObject(new BGStar(nextStar, 0, 5));
 
         }
-        if (seconds % 5 == 0){
+        Random r = new Random();
+        int asteroidFreq = r.nextInt(3) + 3;
+        if (seconds % asteroidFreq == 0){
             if (alreadyDone == false) {
-                Random r = new Random();
-                int nextObject = r.nextInt(size.x);
-                handler.addObject(new Asteroid(nextObject, 0, 15, BitmapFactory.decodeResource(getResources(), R.drawable.asteroid_m)));
+                Random a = new Random();
+                int nextObject = a.nextInt(size.x);
+                handler.addObject(new Asteroid(nextObject, 0, 20, BitmapFactory.decodeResource(getResources(), R.drawable.asteroid_m)));
                 alreadyDone = true;
             }
         }
