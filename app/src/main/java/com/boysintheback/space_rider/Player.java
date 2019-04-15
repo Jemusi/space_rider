@@ -12,7 +12,7 @@ public class Player {
 
 
     public Player(Bitmap bmp, int x, int y) {
-        image = bmp;
+        image = Bitmap.createScaledBitmap(bmp,72,72, true);
         this.x = x;
         this.y = y;
     }
