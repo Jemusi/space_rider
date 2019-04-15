@@ -2,6 +2,7 @@ package com.boysintheback.graph_rider;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -54,5 +55,8 @@ public void update() {
 
 public void draw(Canvas canvas) {
         super.draw(canvas);
+        if(canvas != null){
+            canvas.drawColor(Color.BLACK);
+        }
 }
 }
