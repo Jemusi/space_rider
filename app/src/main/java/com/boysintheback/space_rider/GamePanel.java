@@ -6,10 +6,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import android.graphics.Paint;
 
 import java.util.Random;
 
@@ -27,6 +30,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     public Handler handler;
 
+    private Paint paint;
+
 
     public GamePanel(Context context) {
         super(context);
@@ -34,6 +39,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().addCallback(this);
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
+        paint = new Paint();
     }
 
 @Override
@@ -116,6 +122,7 @@ public void update() {
         handler.updateObjects(this);
 }
 
+@Override
 public void draw(Canvas canvas) {
         super.draw(canvas);
         if(canvas != null){
@@ -124,6 +131,5 @@ public void draw(Canvas canvas) {
             handler.renderObjects(canvas);
         }
 
-
-}
+    }
 }
