@@ -15,4 +15,12 @@ public class Fuel extends GameObject {
     public void update() {
 
     }
+
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
+    }
 }

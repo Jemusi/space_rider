@@ -71,7 +71,7 @@ public void update() {
                 int next = r.nextInt(screenX);
                 handler.addObject(new BGStar(next, 0, 15));
         }
-    handler.updateObjects();
+    handler.updateObjects(this);
 }
 
 public void draw(Canvas canvas) {
