@@ -80,6 +80,7 @@ public void update() {
                 alreadyDone = true;
             }
         }
+        handler.updateObjects(this);
 }
 
 public void draw(Canvas canvas) {
