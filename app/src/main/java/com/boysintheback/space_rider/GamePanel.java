@@ -18,6 +18,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     long startTime;
     public boolean alreadyDone = false;
     public boolean alreadyDoneInitial = false;
+    public boolean alreadyDoneIncrementingSpeed = false;
+    public boolean doneReset = false;
+    public int scale = 0;
+    public int scaleStar = 0;
 
     private MainThread thread;
 
@@ -36,7 +40,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
 @Override
 public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
 }
 
 @Override
@@ -66,9 +69,18 @@ public boolean onTouchEvent(MotionEvent event) {
 }
 
 public void update() {
+    if (seconds % 10 == 0 && seconds != 0 && !alreadyDoneIncrementingSpeed) {
+        if (scale < 30) {
+            scale = scale + 5;
+        }
+        if (scaleStar < 20)
+            scaleStar = scaleStar + 1;
+            updateCurrentStars(5+scaleStar);
+            alreadyDoneIncrementingSpeed = true;
+    }
         if (seconds == 0) {
             if (!alreadyDoneInitial) {
-                for (int i = 0; i < 50; ++i) {
+                for (int i = 0; i < 25; ++i) {
                     Random r = new Random();
                     int nextPosX = r.nextInt(size.x);
                     int nextPosY = r.nextInt(size.y);
@@ -77,23 +89,33 @@ public void update() {
                 }
             }
         }
-        if ((System.nanoTime() - startTime)%7.50 == 0) {
+        if (seconds % 10 == 0) {
+        if (!doneReset) {
+            startTime = System.nanoTime();
+            doneReset = true;
+        }
+        }
+        if ((System.nanoTime() - startTime)%2.50 == 0) {
             Random r = new Random();
             int nextStar = r.nextInt(size.x);
-            handler.addObject(new BGStar(nextStar, 0, 5));
-
+            handler.addObject(new BGStar(nextStar, 0, 5+scaleStar));
         }
+
         Random r = new Random();
         int asteroidFreq = r.nextInt(3) + 3;
         if (seconds % asteroidFreq == 0){
             if (alreadyDone == false) {
                 Random a = new Random();
                 int nextObject = a.nextInt(size.x);
-                handler.addObject(new Asteroid(nextObject, 0, 20, BitmapFactory.decodeResource(getResources(), R.drawable.asteroid_m)));
+                handler.addObject(new Asteroid(nextObject, 0, 20 + scale, BitmapFactory.decodeResource(getResources(), R.drawable.asteroid_m)));
                 alreadyDone = true;
             }
         }
         handler.updateObjects(this);
+}
+
+public void updateCurrentStars(int speed) {
+        handler.updateCurrentStars(speed);
 }
 
 public void draw(Canvas canvas) {
@@ -103,7 +125,5 @@ public void draw(Canvas canvas) {
             spaceship.draw(canvas);
             handler.renderObjects(canvas);
         }
-
-
 }
 }

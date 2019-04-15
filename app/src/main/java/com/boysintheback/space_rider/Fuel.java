@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 public class Fuel extends GameObject {
 
     public Fuel(int x, int y, int speed) {
-        super(x, y, speed);
+        super(x, y, speed, "Fuel");
     }
 
     public void render(Canvas c) {
@@ -22,5 +22,9 @@ public class Fuel extends GameObject {
 
     public int getY() {
         return this.y;
+    }
+
+    public String getType() {
+        return this.type;
     }
 }
