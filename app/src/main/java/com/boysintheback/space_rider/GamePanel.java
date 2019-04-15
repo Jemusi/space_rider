@@ -89,7 +89,15 @@ public void update() {
             if (alreadyDone == false) {
                 Random a = new Random();
                 int nextObject = a.nextInt(size.x);
-                handler.addObject(new Asteroid(nextObject, 0, 20, BitmapFactory.decodeResource(getResources(), R.drawable.asteroid_m)));
+                Random b = new Random();
+                int bigAsteroid = b.nextInt(6);
+                if (bigAsteroid > 2 && bigAsteroid < 5){
+                    handler.addObject(new Asteroid(nextObject, 0, 20, BitmapFactory.decodeResource(getResources(),R.drawable.asteroid_l)));
+                }
+                if (bigAsteroid == 5){
+                    handler.addObject(new Asteroid(nextObject, 0, 20, BitmapFactory.decodeResource(getResources(),R.drawable.asteroid_g)));
+                }
+                else handler.addObject(new Asteroid(nextObject, 0, 20, BitmapFactory.decodeResource(getResources(),R.drawable.asteroid_m)));
                 alreadyDone = true;
             }
         }

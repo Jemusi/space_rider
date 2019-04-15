@@ -3,14 +3,16 @@ package com.boysintheback.space_rider;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
+import java.util.Random;
+
 public class Asteroid extends GameObject {
 
     private Bitmap image;
 
-
     public Asteroid(int x, int y, int speed, Bitmap bmp) {
         super(x,y,speed);
         image = bmp;
+
     }
 
     public void render(Canvas c) {
