@@ -67,8 +67,9 @@ public boolean onTouchEvent(MotionEvent event) {
 public void update() {
         if (seconds % 1 == 0) {
             if (!alreadyDone) {
-                int next = ThreadLocalRandom.current().nextInt(1, 10);
-                handler.addObject(new BGStar(screenX / next, 0, 5));
+                Random r = new Random();
+                int next = r.nextInt(screenX);
+                handler.addObject(new BGStar(next, 0, 15));
                 alreadyDone = true;
             }
         }
