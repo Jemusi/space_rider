@@ -11,10 +11,13 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
-    public int screenX = 1000;
+    public int screenX = 1050;
+    public int screenY = 2500;
     public int seconds = 0;
+    public boolean alreadyDone = false;
     public Handler handler = new Handler();
 
     private MainThread thread;
@@ -62,11 +65,14 @@ public boolean onTouchEvent(MotionEvent event) {
 }
 
 public void update() {
-        handler.updateObjects();
         if (seconds % 1 == 0) {
-            Random r = new Random();
-            handler.addObject(new BGStar(1050, 500, 500, 500));
+            if (!alreadyDone) {
+                int next = ThreadLocalRandom.current().nextInt(1, 10);
+                handler.addObject(new BGStar(screenX / next, 0, 5));
+                alreadyDone = true;
+            }
         }
+    handler.updateObjects();
 }
 
 public void draw(Canvas canvas) {

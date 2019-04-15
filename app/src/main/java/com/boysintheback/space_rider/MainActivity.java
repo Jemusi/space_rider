@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 g.seconds++;
+                g.alreadyDone = false;
             }
         };
         Timer timer = new Timer();

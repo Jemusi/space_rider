@@ -6,7 +6,7 @@ import android.graphics.Paint;
 
 public class BGStar extends GameObject {
 
-    public BGStar(int x, int y, int speed, int pos) {
+    public BGStar(int x, int y, int speed) {
         super(x,y,speed);
     }
 
@@ -17,6 +17,6 @@ public class BGStar extends GameObject {
     }
 
     public void update() {
-
+        y += speed;
     }
 }
