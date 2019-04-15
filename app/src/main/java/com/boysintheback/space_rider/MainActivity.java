@@ -1,7 +1,9 @@
 package com.boysintheback.space_rider;
 
+import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -16,6 +18,10 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         final GamePanel g = new GamePanel(this);
+        Display display = getWindowManager().getDefaultDisplay();
+        Point p = new Point();
+        display.getRealSize(p);
+        g.size = p;
         TimerTask t = new TimerTask() {
             @Override
             public void run() {

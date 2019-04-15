@@ -12,8 +12,6 @@ public class MainThread extends Thread {
     public static Canvas canvas;
     public int seconds;
 
-    public int screenX;
-    public int screenY;
 
 
     public void setRunning(boolean running) {

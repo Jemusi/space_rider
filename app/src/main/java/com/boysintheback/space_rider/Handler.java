@@ -24,7 +24,7 @@ public class Handler {
 
     public void updateObjects(GamePanel g) {
         for (int i = 0; i < objects.size(); i++) {
-            if (objects.get(i).getX() > g.screenY) {
+            if (objects.get(i).getX() > g.size.y) {
                 objects.remove(objects.get(i));
             }
             objects.get(i).update();
