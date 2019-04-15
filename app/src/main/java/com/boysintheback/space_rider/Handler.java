@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 public class Handler {
     private ArrayList<GameObject> objects = new ArrayList<>();
+    private Player playerShip;
+
+    public Handler(Player spaceship){
+        this.playerShip = spaceship;
+    }
 
     public void addObject(GameObject go) {
         objects.add(go);
