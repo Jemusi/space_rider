@@ -2,6 +2,7 @@ package com.boysintheback.space_rider;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 
 public class Player {
 
@@ -9,7 +10,9 @@ public class Player {
     private int x;
     private int y;
     private static int speed = 10;
-    private Bitmap image;
+    public Bitmap image;
+    private int angle =0 ;
+
 
 
     public Player(Bitmap bmp, int x, int y) {
@@ -26,5 +29,8 @@ public class Player {
 
     public void update() {
 
+    }
+
+    public void render(Canvas c) {
     }
 }
