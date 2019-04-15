@@ -1,4 +1,4 @@
-package com.boysintheback.graph_rider;
+package com.boysintheback.space_rider;
 
 import android.content.Context;
 import android.graphics.Canvas;
