@@ -19,6 +19,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     long startTime;
     public boolean alreadyDone = false;
     public boolean alreadyDoneInitial = false;
+    public boolean alreadyDroppedFuel = false;
 
     private MainThread thread;
 
@@ -84,6 +85,14 @@ public void update() {
             int nextStar = r.nextInt(size.x);
             handler.addObject(new BGStar(nextStar, 0, 5));
 
+        }
+        if (seconds % 3 == 0){
+            if (!alreadyDroppedFuel) {
+                Random rand = new Random();
+                int startX = rand.nextInt(size.x);
+                handler.addObject(new Asteroid(startX, 0, 20, BitmapFactory.decodeResource(getResources(),R.drawable.fuel)));
+                alreadyDroppedFuel = true;
+            }
         }
         Random r = new Random();
         int asteroidFreq = r.nextInt(3) + 3;
