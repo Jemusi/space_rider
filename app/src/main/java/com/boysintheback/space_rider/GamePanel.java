@@ -22,19 +22,17 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     private Player spaceship;
 
-    public Handler handler = new Handler(spaceship);
+    public Handler handler;
 
 
     public GamePanel(Context context) {
         super(context);
         startTime = System.nanoTime();
+        getHolder().addCallback(this);
+        thread = new MainThread(getHolder(), this);
+        setFocusable(true);
+    }
 
-    getHolder().addCallback(this);
-
-    thread = new MainThread(getHolder(), this);
-
-    setFocusable(true);
-}
 @Override
 public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 
@@ -46,6 +44,7 @@ public void surfaceCreated(SurfaceHolder holder) {
         thread.setRunning(true);
         thread.start();
         spaceship = new Player(BitmapFactory.decodeResource(getResources(),R.drawable.spaceship), size.x/2, size.y/2);
+        handler = new Handler(spaceship);
 }
 
 @Override
@@ -72,11 +71,11 @@ public void update() {
             handler.addObject(new BGStar(nextStar, 0, 5));
 
         }
-        if (seconds % 15 == 0){
+        if (seconds % 5 == 0){
             if (alreadyDone == false) {
                 Random r = new Random();
                 int nextObject = r.nextInt(size.x);
-                handler.addObject(new Asteroid(nextObject, 0, 10, BitmapFactory.decodeResource(getResources(), R.drawable.asteroid_m)));
+                handler.addObject(new Asteroid(nextObject, 0, 15, BitmapFactory.decodeResource(getResources(), R.drawable.asteroid_m)));
                 alreadyDone = true;
             }
         }

@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 
 public class Player {
 
+    private boolean progress;
     private int x;
     private int y;
     private static int speed = 10;
@@ -16,6 +17,7 @@ public class Player {
         image = resizedBMP;
         this.x = x;
         this.y = y;
+        progress = true;
     }
 
     public void draw(Canvas c) {
