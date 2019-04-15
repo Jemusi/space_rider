@@ -19,11 +19,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     long startTime;
     public boolean alreadyDone = false;
     public boolean alreadyDoneInitial = false;
-
+    public boolean isTouch = false;
     private MainThread thread;
-
+    private boolean holding;
     private Player spaceship;
-
     public Handler handler;
 
 
@@ -63,8 +62,13 @@ public void surfaceDestroyed(SurfaceHolder holder) {
 }
 
 @Override
-public boolean onTouchEvent(MotionEvent event) {
-        return super.onTouchEvent(event);
+public boolean onTouchEvent(MotionEvent event) {int touchX = (int) event.getX();
+            if (touchX > size.x / 2 - 64) {
+                spaceship.update(false);
+            } else {
+                spaceship.update(true);
+            }
+            return true;
 }
 
 public void update() {
@@ -117,4 +121,5 @@ public void draw(Canvas canvas) {
 
 
 }
+
 }
