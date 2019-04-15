@@ -27,7 +27,7 @@ public class Handler {
         for (int i = 0; i < objects.size(); i++) {
             if (objects.get(i).getY() > g.size.y) {
                 objects.remove(objects.get(i));
-            } 
+            }
             objects.get(i).update();
         }
     }
