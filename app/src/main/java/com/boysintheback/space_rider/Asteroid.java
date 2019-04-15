@@ -20,4 +20,12 @@ public class Asteroid extends GameObject {
     public void update() {
         y += speed;
     }
+
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
+    }
 }
