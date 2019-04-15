@@ -77,7 +77,7 @@ public void update() {
                 Random r = new Random();
                 int nextObject = r.nextInt(size.x);
                 handler.addObject(new Asteroid(nextObject, 0, 10, BitmapFactory.decodeResource(getResources(), R.drawable.asteroid_m)));
-                alreadyDone = true;
+                alreadyDone = true; 
             }
         }
         handler.updateObjects(this);
