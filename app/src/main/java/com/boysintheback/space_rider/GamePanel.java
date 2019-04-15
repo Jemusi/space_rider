@@ -19,10 +19,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     long startTime;
     public boolean alreadyDone = false;
     public boolean alreadyDoneInitial = false;
-    public boolean isTouch = false;
+    public boolean alreadyDroppedFuel = false;
+
     private MainThread thread;
-    private boolean holding;
+
     private Player spaceship;
+
     public Handler handler;
 
 
@@ -62,13 +64,8 @@ public void surfaceDestroyed(SurfaceHolder holder) {
 }
 
 @Override
-public boolean onTouchEvent(MotionEvent event) {int touchX = (int) event.getX();
-            if (touchX > size.x / 2 - 64) {
-                spaceship.update(false);
-            } else {
-                spaceship.update(true);
-            }
-            return true;
+public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
 }
 
 public void update() {
@@ -88,6 +85,14 @@ public void update() {
             int nextStar = r.nextInt(size.x);
             handler.addObject(new BGStar(nextStar, 0, 5));
 
+        }
+        if (seconds % 3 == 0){
+            if (!alreadyDroppedFuel) {
+                Random rand = new Random();
+                int startX = rand.nextInt(size.x);
+                handler.addObject(new Asteroid(startX, 0, 20, BitmapFactory.decodeResource(getResources(),R.drawable.fuel)));
+                alreadyDroppedFuel = true;
+            }
         }
         Random r = new Random();
         int asteroidFreq = r.nextInt(3) + 3;
@@ -121,5 +126,4 @@ public void draw(Canvas canvas) {
 
 
 }
-
 }
