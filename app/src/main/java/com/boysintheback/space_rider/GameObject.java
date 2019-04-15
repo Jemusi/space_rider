@@ -5,8 +5,10 @@ import android.graphics.Canvas;
 public abstract class GameObject {
     int x;
     int y;
-    int speed;
+    double speed;
+    double recordedSpeed;
     String type;
+    private boolean recordSpeed = true;
 
     public GameObject(int x, int y, int speed, String type) {
         this.x = x;
@@ -24,4 +26,18 @@ public abstract class GameObject {
     public abstract int getY();
 
     public abstract String getType();
+
+    public void slowDown(){
+        if (recordSpeed){
+            recordedSpeed = speed;
+            recordSpeed = false;
+        }
+        speed = 0.8*speed;
+    }
+
+    public void speedUp(){
+        if (speed < recordedSpeed){
+            speed = 1.25*speed;
+        } else recordSpeed = true;
+    }
 }

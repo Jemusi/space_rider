@@ -12,6 +12,10 @@ public class Handler {
         this.playerShip = spaceship;
     }
 
+    public ArrayList<GameObject> getObjects(){
+        return objects;
+    }
+
     public void addObject(GameObject go) {
         objects.add(go);
     }
@@ -28,6 +32,7 @@ public class Handler {
             if (objects.get(i).getY() > g.size.y) {
                 objects.remove(objects.get(i));
             }
+            objects.get(i).speedUp();
             objects.get(i).update();
         }
     }

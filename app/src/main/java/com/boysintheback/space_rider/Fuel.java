@@ -9,7 +9,7 @@ public class Fuel extends GameObject {
     private Bitmap image;
 
     public Fuel(int x, int y, int speed, Bitmap image) {
-        super(x, y, speed);
+        super(x, y, speed, "Fuel");
         this.image = image;
     }
 
@@ -22,10 +22,12 @@ public class Fuel extends GameObject {
     }
 
     public int getX() {
-        return this.x;
+        return x;
     }
 
     public int getY() {
-        return this.y;
+        return y;
     }
+
+    public String getType(){return type;}
 }

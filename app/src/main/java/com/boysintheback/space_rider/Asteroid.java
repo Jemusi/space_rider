@@ -12,7 +12,7 @@ public class Asteroid extends GameObject {
     private int angle = 0;
 
     public Asteroid(int x, int y, int speed, Bitmap bmp) {
-        super(x,y,speed);
+        super(x,y,speed,"Asteroid");
         image = bmp;
 
     }
@@ -38,10 +38,12 @@ public class Asteroid extends GameObject {
     }
 
     public int getX() {
-        return this.x;
+        return x;
     }
 
     public int getY() {
-        return this.y;
+        return y;
     }
+
+    public String getType(){return type;}
 }
