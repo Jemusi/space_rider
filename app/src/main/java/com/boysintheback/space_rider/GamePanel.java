@@ -46,6 +46,7 @@ public void surfaceCreated(SurfaceHolder holder) {
         thread.setRunning(true);
         thread.start();
         spaceship = new Player(BitmapFactory.decodeResource(getResources(),R.drawable.spaceship), size.x/2 - 64, size.y/2 - 64);
+        // Changed x and y to center spaceship
         handler = new Handler(spaceship);
 }
 
