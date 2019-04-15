@@ -27,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 g.seconds++;
                 g.alreadyDone = false;
-                g.alreadyDoneIncrementingSpeed = false;
-                g.doneReset = false;
+                g.alreadyDroppedFuel = false;
             }
         };
         Timer timer = new Timer();

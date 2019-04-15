@@ -20,6 +20,7 @@ public class Handler {
         for (int i = 0; i < objects.size(); i++) {
             objects.get(i).render(c);
         }
+        playerShip.render(c);
     }
 
     public void updateObjects(GamePanel g) {
