@@ -25,6 +25,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     private MainThread thread;
 
+    public Handler handler = new Handler(spaceship);
+
 
     public GamePanel(Context context) {
         super(context);
