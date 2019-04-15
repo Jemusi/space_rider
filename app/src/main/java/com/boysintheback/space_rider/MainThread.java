@@ -10,6 +10,7 @@ public class MainThread extends Thread {
     private GamePanel panel;
     private boolean running;
     public static Canvas canvas;
+    public int seconds;
 
     public void setRunning(boolean running) {
         this.running = running;
@@ -23,6 +24,7 @@ public class MainThread extends Thread {
 
     @Override
     public void run() {
+        seconds = 0;
         long startTime;
         long timeMillis = 1000/MAX_FPS;
         long waitTime;

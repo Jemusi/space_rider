@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -12,6 +15,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(new GamePanel(this));
+        final GamePanel g = new GamePanel(this);
+        TimerTask t = new TimerTask() {
+            @Override
+            public void run() {
+                g.seconds++;
+            }
+        };
+        Timer timer = new Timer();
+        timer.schedule(t, 1000, 1000);
+        setContentView(g);
     }
 }
