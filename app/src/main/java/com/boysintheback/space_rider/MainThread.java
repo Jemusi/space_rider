@@ -4,13 +4,17 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
 public class MainThread extends Thread {
-    public static final int MAX_FPS = 60;
+    public static final int MAX_FPS = 30;
     private double averageFPS;
     private SurfaceHolder surfaceHolder;
     private GamePanel panel;
     private boolean running;
     public static Canvas canvas;
     public int seconds;
+
+    public int screenX;
+    public int screenY;
+
 
     public void setRunning(boolean running) {
         this.running = running;

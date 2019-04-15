@@ -1,15 +1,24 @@
 package com.boysintheback.space_rider;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class Player extends GameObject {
+public class Player {
 
-    public Player(int x, int y, int speed) {
-        super(x, y, speed);
+    private int x;
+    private int y;
+    private static int speed = 10;
+    private Bitmap image;
+
+
+    public Player(Bitmap bmp, int x, int y) {
+        image = bmp;
+        this.x = x;
+        this.y = y;
     }
 
-    public void render(Canvas c) {
-
+    public void draw(Canvas c) {
+        c.drawBitmap(image, x, y, null);
     }
 
     public void update() {

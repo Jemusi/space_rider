@@ -1,8 +1,11 @@
 package com.boysintheback.space_rider;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Point;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -15,6 +18,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public Handler handler = new Handler();
 
     private MainThread thread;
+
+    private Player spaceship;
+
 
     public GamePanel(Context context) {
         super(context);
@@ -33,9 +39,9 @@ public void surfaceChanged(SurfaceHolder holder, int format, int width, int heig
 @Override
 public void surfaceCreated(SurfaceHolder holder) {
         thread = new MainThread(getHolder(), this);
-
         thread.setRunning(true);
         thread.start();
+        spaceship = new Player(BitmapFactory.decodeResource(getResources(),R.drawable.spaceship), screenX/2, 1500);
 }
 
 @Override
@@ -67,7 +73,10 @@ public void draw(Canvas canvas) {
         super.draw(canvas);
         if(canvas != null){
             canvas.drawColor(Color.BLACK);
+            spaceship.draw(canvas);
             handler.renderObjects(canvas);
         }
+
+
 }
 }
