@@ -30,7 +30,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     public Handler handler;
 
-
     public GamePanel(Context context) {
         super(context);
         startTime = System.nanoTime();
@@ -66,16 +65,23 @@ public void surfaceDestroyed(SurfaceHolder holder) {
 
 @Override
 public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_POINTER_DOWN ){
-            holding = true;
-            if (event.getX() < size.x/2){
-                left = true;
+//        if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_POINTER_DOWN ){
+//            holding = true;
+//            if (event.getX() < size.x/2){
+//                left = true;
+//            }
+//            else left = false;
+//        }
+//        if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_POINTER_UP){
+//            holding = false;
+//            left = false;
+//        }
+        if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_POINTER_DOWN) {
+            if (event.getX() < size.x/2) {
+                spaceship.turnLeft();
+            } else {
+                spaceship.turnRight();
             }
-            else left = false;
-        }
-        if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_POINTER_UP){
-            holding = false;
-            left = false;
         }
         return true;
 }
@@ -109,7 +115,7 @@ public void update() {
                 doneReset = true;
             }
             }
-            if ((System.nanoTime() - startTime)%2.50 == 0) {
+            if ((System.nanoTime() - startTime)%13 == 0) {
                 Random r = new Random();
                 int nextStar = r.nextInt(size.x);
                 handler.addObject(new BGStar(nextStar, 0, 5+scaleStar));

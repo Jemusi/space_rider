@@ -40,4 +40,5 @@ public abstract class GameObject {
             speed = 1.25*speed;
         } else recordSpeed = true;
     }
+
 }
