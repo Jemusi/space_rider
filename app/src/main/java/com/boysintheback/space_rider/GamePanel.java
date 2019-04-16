@@ -26,7 +26,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private boolean left;
     private boolean holding;
     private MainThread thread;
-    private Player spaceship;
+    public Player spaceship;
 
     public Handler handler;
 
@@ -65,24 +65,24 @@ public void surfaceDestroyed(SurfaceHolder holder) {
 
 @Override
 public boolean onTouchEvent(MotionEvent event) {
-//        if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_POINTER_DOWN ){
-//            holding = true;
-//            if (event.getX() < size.x/2){
-//                left = true;
-//            }
-//            else left = false;
-//        }
-//        if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_POINTER_UP){
-//            holding = false;
-//            left = false;
-//        }
-        if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_POINTER_DOWN) {
-            if (event.getX() < size.x/2) {
-                spaceship.turnLeft();
-            } else {
-                spaceship.turnRight();
+        if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_POINTER_DOWN ){
+            holding = true;
+            if (event.getX() < size.x/2){
+                left = true;
             }
+            else left = false;
         }
+        if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_POINTER_UP){
+            holding = false;
+            left = false;
+        }
+//        if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_POINTER_DOWN) {
+//            if (event.getX() < size.x/2) {
+//                spaceship.turnLeft();
+//            } else {
+//                spaceship.turnRight();
+//            }
+//        }
         return true;
 }
 

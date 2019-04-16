@@ -28,11 +28,15 @@ public class Handler {
     }
 
     public void updateObjects(GamePanel g) {
+//        for (GameObject o: objects){
+//            if (o.getType().equals("Asteroid") && o.isCollided){
+//
+//            }
+//        }
         for (int i = 0; i < objects.size(); i++) {
             if (objects.get(i).getY() > g.size.y) {
                 objects.remove(objects.get(i));
             }
-            objects.get(i).speedUp();
             objects.get(i).update();
         }
     }

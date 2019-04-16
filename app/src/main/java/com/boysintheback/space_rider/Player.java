@@ -12,12 +12,11 @@ public class Player {
     private boolean progress;
     private float x;
     private float y;
-    private static int speed = 30;
+    private double speed = 30;
     public Bitmap image;
     private int angle = 0 ;
     private ArrayList<GameObject> objects;
     private Point sizeOfScreen;
-
 
 
     public Player(Bitmap bmp, Point p) {
@@ -40,43 +39,35 @@ public class Player {
 
     public void update(boolean left, boolean holding) {
         x += speed * Math.sin(Math.toRadians(angle));
-//        if (left && holding){
-//            this.x -= speed;
-//            if (angle != -180){
-//                angle -= 5;
-//                y += 3;
-//            }
-//            for (GameObject o: objects){
-//                o.slowDown();
-//            }
-//        } else if (holding){
-//            this.x += speed;
-//            if (angle != 180){
-//                angle += 5;
-//                y += 5;
-//            }
-//            for (GameObject o: objects){
-//                o.slowDown();
-//            }
-//        } else if (y > sizeOfScreen.y/2){
-//            y-=15;
-//        };
+        if (left && holding){
+            if (angle != -60){
+                angle -= 5;
+                y += 3;
+            }
+        } else if (holding){
+            if (angle != 60){
+                angle += 5;
+                y += 3;
+            }
+        } else if (y > sizeOfScreen.y/2){
+            y-=5;
+        };
 
     }
 
-    public void turnRight() {
-        if (angle > 79) {
-        } else {
-            angle += 20;
-        }
-    }
-
-    public void turnLeft() {
-        if (angle < -79 ) {
-        } else {
-            angle -= 20;
-        }
-    }
+//    public void turnRight() {
+//        if (angle > 79) {
+//        } else {
+//            angle += 20;
+//        }
+//    }
+//
+//    public void turnLeft() {
+//        if (angle < -79 ) {
+//        } else {
+//            angle -= 20;
+//        }
+//    }
 
     public void render(Canvas c) {
         Matrix matrix = new Matrix();
@@ -86,7 +77,13 @@ public class Player {
         c.translate(-x,-y);
     }
 
-    public static int getSpeed() {
-        return speed;
+
+    public double getX(){
+        return x;
     }
+
+    public double getY() {
+        return y;
+    }
+
 }
