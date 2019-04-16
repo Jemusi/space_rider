@@ -7,9 +7,11 @@ import java.util.ArrayList;
 public class Handler {
     private ArrayList<GameObject> objects = new ArrayList<>();
     private Player playerShip;
+    private Score score;
 
     public Handler(Player spaceship){
         this.playerShip = spaceship;
+        this.score = new Score();
     }
 
 
@@ -26,6 +28,11 @@ public class Handler {
             objects.get(i).render(c);
         }
         playerShip.render(c);
+        score.render(c);
+    }
+
+    public void updateScore() {
+        score.updateScore();
     }
 
     public void updateObjects(GamePanel g) {

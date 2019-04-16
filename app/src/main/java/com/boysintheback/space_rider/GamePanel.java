@@ -111,6 +111,9 @@ public void update() {
                 updateCurrentStars(5+scaleStar);
                 alreadyDoneIncrementingSpeed = true;
         }
+
+        // update for scoreboard
+
             if (seconds == 0) {
                 if (!alreadyDoneInitial) {
                     for (int i = 0; i < 25; ++i) {
@@ -134,6 +137,9 @@ public void update() {
                 Random r = new Random();
                 int nextStar = r.nextInt(size.x);
                 handler.addObject(new BGStar(nextStar, 0, 5+scaleStar));
+            }
+            if ((System.nanoTime() - startTime)%13 == 0) {
+                handler.updateScore();
             }
 
             // Asteroid generating part
