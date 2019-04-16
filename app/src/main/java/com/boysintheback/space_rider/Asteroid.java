@@ -34,7 +34,6 @@ public class Asteroid extends GameObject {
 //        Matrix matrix = new Matrix();
 //        matrix.postRotate(1);
 //        this.image = Bitmap.createBitmap(this.image,0,0, this.image.getWidth(), this.image.getHeight(), matrix, true);
-        updateSpeed();
         y += speed;
     }
 
@@ -48,7 +47,6 @@ public class Asteroid extends GameObject {
 
     public String getType(){return type;}
 
-    public void updateSpeed() {
-        speed = Player.getSpeed();
-    }
+
+
 }

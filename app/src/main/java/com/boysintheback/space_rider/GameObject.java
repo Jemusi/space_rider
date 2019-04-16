@@ -3,12 +3,10 @@ package com.boysintheback.space_rider;
 import android.graphics.Canvas;
 
 public abstract class GameObject {
-    int x;
-    int y;
-    double speed;
-    double recordedSpeed;
-    String type;
-    private boolean recordSpeed = true;
+    protected int x;
+    protected int y;
+    protected double speed;
+    protected String type;
 
     public GameObject(int x, int y, int speed, String type) {
         this.x = x;
@@ -27,18 +25,6 @@ public abstract class GameObject {
 
     public abstract String getType();
 
-    public void slowDown(){
-        if (recordSpeed){
-            recordedSpeed = speed;
-            recordSpeed = false;
-        }
-        speed = 0.8*speed;
-    }
 
-    public void speedUp(){
-        if (speed < recordedSpeed){
-            speed = 1.25*speed;
-        } else recordSpeed = true;
-    }
 
 }
