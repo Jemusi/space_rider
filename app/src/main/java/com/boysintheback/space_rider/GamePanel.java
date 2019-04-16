@@ -87,8 +87,21 @@ public boolean onTouchEvent(MotionEvent event) {
 }
 
 public void update() {
+        // Update movement
         spaceship.updateObjects(handler.getObjects());
         spaceship.update(left,holding);
+
+        // Generate fuel drops
+        if (seconds % 3 == 0) {
+            if (!alreadyDroppedFuel) {
+                Random x = new Random();
+                int nextObject = x.nextInt(size.x);
+                handler.addObject(new Fuel(nextObject, 0, 20 + scale, BitmapFactory.decodeResource(getResources(), R.drawable.fuel)));
+                alreadyDroppedFuel = true;
+            }
+        }
+
+        // Increase speed of asteroids
         if (seconds % 10 == 0 && seconds != 0 && !alreadyDoneIncrementingSpeed) {
             if (scale < 30) {
                 scale = scale + 5;
@@ -115,12 +128,15 @@ public void update() {
                 doneReset = true;
             }
             }
+
+            // Star generating part
             if ((System.nanoTime() - startTime)%13 == 0) {
                 Random r = new Random();
                 int nextStar = r.nextInt(size.x);
                 handler.addObject(new BGStar(nextStar, 0, 5+scaleStar));
             }
 
+            // Asteroid generating part
             Random r = new Random();
             int asteroidFreq = r.nextInt(3) + 3;
             if (seconds % asteroidFreq == 0){
