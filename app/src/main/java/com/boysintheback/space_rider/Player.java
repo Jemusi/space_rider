@@ -38,29 +38,31 @@ public class Player {
       //  c.drawBitmap(image, x, y, null);
     }
 
-    public void update(boolean left, boolean holding) {
+    public void update() {
+        boolean left = GamePanel.left;
+        boolean holding = GamePanel.holding;
         x += speed * Math.sin(Math.toRadians(angle));
-//        if (left && holding){
-//            this.x -= speed;
-//            if (angle != -180){
-//                angle -= 5;
-//                y += 3;
-//            }
-//            for (GameObject o: objects){
-//                o.slowDown();
-//            }
-//        } else if (holding){
-//            this.x += speed;
-//            if (angle != 180){
-//                angle += 5;
-//                y += 5;
-//            }
-//            for (GameObject o: objects){
-//                o.slowDown();
-//            }
-//        } else if (y > sizeOfScreen.y/2){
-//            y-=15;
-//        };
+        if (left && holding){
+            this.x -= speed;
+            if (angle != -180){
+                angle -= 5;
+                y += 3;
+            }
+            for (GameObject o: objects){
+                o.slowDown();
+            }
+        } else if (holding){
+            this.x += speed;
+            if (angle != 180){
+                angle += 5;
+                y += 5;
+            }
+            for (GameObject o: objects){
+                o.slowDown();
+            }
+        } else if (y > sizeOfScreen.y/2){
+            y-=15;
+        };
 
     }
 

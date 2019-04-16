@@ -12,6 +12,7 @@ public class Handler {
         this.playerShip = spaceship;
     }
 
+
     public ArrayList<GameObject> getObjects(){
         return objects;
     }

@@ -23,8 +23,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public boolean doneReset = false;
     public int scale = 0;
     public int scaleStar = 0;
-    private boolean left;
-    private boolean holding;
+    public static boolean left;
+    public static boolean holding;
     private MainThread thread;
     private Player spaceship;
 
@@ -76,19 +76,26 @@ public boolean onTouchEvent(MotionEvent event) {
 //            holding = false;
 //            left = false;
 //        }
+
         if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_POINTER_DOWN) {
             if (event.getX() < size.x/2) {
-                spaceship.turnLeft();
+                holding = true;
+                left = true;
             } else {
-                spaceship.turnRight();
+                holding = true;
+                left = false;
             }
+        } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_POINTER_UP) {
+            holding = false;
+            left = false;
         }
         return true;
 }
 
 public void update() {
         spaceship.updateObjects(handler.getObjects());
-        spaceship.update(left,holding);
+        // spaceship.update(left,holding);
+        spaceship.update();
         if (seconds % 10 == 0 && seconds != 0 && !alreadyDoneIncrementingSpeed) {
             if (scale < 30) {
                 scale = scale + 5;
