@@ -163,9 +163,13 @@ public void updateCurrentStars(int speed) {
 public void draw(Canvas canvas) {
         super.draw(canvas);
         if(canvas != null){
-            canvas.drawColor(Color.BLACK);
-            spaceship.draw(canvas);
-            handler.renderObjects(canvas);
+            if (spaceship.returnStatus()) {
+                canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.gameover),size.x/40 - 40, size.y/4, null);
+            } else {
+                canvas.drawColor(Color.BLACK);
+                spaceship.draw(canvas);
+                handler.renderObjects(canvas);
+            }
         }
 }
 }

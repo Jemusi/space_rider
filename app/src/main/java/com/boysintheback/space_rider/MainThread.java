@@ -66,7 +66,6 @@ public class MainThread extends Thread {
                 frameCount = 0;
                 totalTime = 0;
                 System.out.println(averageFPS);
-                System.out.println(System.currentTimeMillis());
             }
         }
     }

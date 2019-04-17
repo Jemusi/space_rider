@@ -17,6 +17,7 @@ public class Player {
     private int angle = 0 ;
     private ArrayList<GameObject> objects;
     private Point sizeOfScreen;
+    public boolean dead;
 
 
     public Player(Bitmap bmp, Point p) {
@@ -26,6 +27,7 @@ public class Player {
         this.y = p.y/2;
         progress = true;
         sizeOfScreen = p;
+        dead = false;
     }
 
     public void updateObjects(ArrayList<GameObject> objects){
@@ -42,16 +44,23 @@ public class Player {
         if (left && holding){
             if (angle != -60){
                 angle -= 5;
-                y += 3;
+                if (y < sizeOfScreen.y*3/4) {
+                    y += 3;
+                }
             }
         } else if (holding){
             if (angle != 60){
                 angle += 5;
-                y += 3;
+                if (y < sizeOfScreen.y*3/4) {
+                    y += 3;
+                }
             }
         } else if (y > sizeOfScreen.y/2){
             y-=5;
-        };
+        }
+        if (x < -100 || x > sizeOfScreen.x + 100) {
+            dead = true;
+        }
 
     }
 
@@ -84,6 +93,10 @@ public class Player {
 
     public double getY() {
         return y;
+    }
+
+    public boolean returnStatus() {
+        return dead;
     }
 
 }
