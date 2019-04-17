@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -21,6 +22,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public boolean alreadyDoneIncrementingSpeed = false;
     public boolean alreadyDroppedFuel = false;
     public boolean doneReset = false;
+    public boolean fuelBool = false;
     public int scale = 0;
     public int scaleStar = 0;
     private boolean left;
@@ -125,10 +127,18 @@ public void update() {
                     }
                 }
             }
+            // resetting nanoTime clock for accuracy, also update spaceship's fuel bar
             if (seconds % 10 == 0) {
             if (!doneReset) {
                 startTime = System.nanoTime();
+                spaceship.decFuel();
                 doneReset = true;
+            }
+            }
+            if (seconds % 5 == 0) {
+            if (!fuelBool) {
+                spaceship.decFuel();
+                fuelBool = true;
             }
             }
 
@@ -168,6 +178,14 @@ public void draw(Canvas canvas) {
             } else {
                 canvas.drawColor(Color.BLACK);
                 spaceship.draw(canvas);
+                Paint paint = new Paint();
+                paint.setColor(Color.RED);
+                Paint p1 = new Paint();
+                p1.setColor(Color.WHITE);
+                p1.setStrokeWidth(0);
+                p1.setStyle(Paint.Style.STROKE);
+                canvas.drawRect(100, 100, 100 + spaceship.getFuel(), 150, paint);
+                canvas.drawRect(100, 100, 200, 150, p1);
                 handler.renderObjects(canvas);
             }
         }

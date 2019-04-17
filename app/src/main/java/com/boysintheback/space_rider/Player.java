@@ -17,7 +17,8 @@ public class Player {
     private int angle = 0 ;
     private ArrayList<GameObject> objects;
     private Point sizeOfScreen;
-    public boolean dead;
+    private boolean dead;
+    private int fuelPercent;
 
 
     public Player(Bitmap bmp, Point p) {
@@ -28,6 +29,7 @@ public class Player {
         progress = true;
         sizeOfScreen = p;
         dead = false;
+        fuelPercent = 100;
     }
 
     public void updateObjects(ArrayList<GameObject> objects){
@@ -58,7 +60,7 @@ public class Player {
         } else if (y > sizeOfScreen.y/2){
             y-=5;
         }
-        if (x < -100 || x > sizeOfScreen.x + 100) {
+        if (x < -100 || x > sizeOfScreen.x + 100 || fuelPercent <= 0) {
             dead = true;
         }
 
@@ -97,6 +99,14 @@ public class Player {
 
     public boolean returnStatus() {
         return dead;
+    }
+
+    public void decFuel() {
+        fuelPercent -= 10;
+    }
+
+    public int getFuel() {
+        return fuelPercent;
     }
 
 }
